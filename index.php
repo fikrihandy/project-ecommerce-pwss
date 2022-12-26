@@ -40,16 +40,32 @@ if ($_GET["filter"] == "laptop") {
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Home</a>
+                    <a class="<?php if ($filter == '') {
+                        echo 'nav-link active';
+                    } else {
+                        echo 'nav-link';
+                    } ?>" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?filter=laptop">Laptop</a>
+                    <a class="<?php if ($filter == 'Laptop') {
+                        echo 'nav-link active';
+                    } else {
+                        echo 'nav-link';
+                    } ?>" href="index.php?filter=laptop">Laptop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?filter=hp">Smartphone</a>
+                    <a class="<?php if ($filter == 'Smartphone') {
+                        echo 'nav-link active';
+                    } else {
+                        echo 'nav-link';
+                    } ?>" href="index.php?filter=hp">Smartphone</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?filter=aksesoris">Aksesoris</a>
+                    <a class="<?php if ($filter == 'Aksesoris') {
+                        echo 'nav-link active';
+                    } else {
+                        echo 'nav-link';
+                    } ?>" href="index.php?filter=aksesoris">Aksesoris</a>
                 </li>
             </ul>
             <span class="navbar-text">

@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-light sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <h3>Admin Dashboard</h3>
@@ -42,16 +42,16 @@
 </nav>
 <br>
 <div class="container">
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama Produk</th>
+            <th scope="col">Produk</th>
             <th scope="col">Kategori</th>
+            <th class="text-end" scope="col">Tambah/Kurang Stock</th>
             <th class="text-end" scope="col">Harga</th>
-            <th class="text-end" scope="col">Edit Produk</th>
-            <th class="text-end" scope="col">Hapus Produk</th>
-            <th class="text-end" scope="col">Live View</th>
+            <th colspan="2" class="text-center" scope="col">Edit Produk</th>
+            <th class="text-end" scope="col">View</th>
         </tr>
         </thead>
         <tbody>
@@ -76,6 +76,23 @@
                     <td class="align-middle">
                         <?php echo $row["kategori"] ?>
                     </td>
+                    <form action="tambah_kurang_stok.php" method="post">
+                        <td class="text-end align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                                <input type="hidden" name="stok_lama" value="<?php echo $row["stok"]; ?>">
+                                <button type="button" class="btn btn-light"><?php echo $row["stok"] ?></button>
+                                <button type="submit" id="minus<?php echo $i ?>" class="btn btn-secondary"
+                                        name="update_stok"
+                                        value="-">-
+                                </button>
+                                <button type="submit" id="plus<?php echo $i ?>" class="btn btn-secondary"
+                                        name="update_stok"
+                                        value="+">+
+                                </button>
+                            </div>
+                        </td>
+                    </form>
                     <td class="align-middle text-end">Rp
                         <?php echo number_format($row["harga"]) ?>
                     </td>
@@ -109,7 +126,7 @@
                                                 data-bs-dismiss="modal">Batal
                                         </button>
                                         <form action="delete_produk.php" method="post">
-                                            <button id="<?php echo $row[" id"]
+                                            <button id="<?php echo $row["id"]
                                             ?>" name="id" type="submit" class="btn btn-danger" value="<?php echo
                                             $row["id"] ?>"> Hapus
                                             </button>
@@ -120,7 +137,8 @@
                         </div>
                     </td>
                     <td class="text-end align-middle">
-                        <a class="btn btn-success" href="detail_produk.php?id=<?php echo $row["id"] ?>" role="button">View</a>
+                        <a class="btn btn-success" href="detail_produk.php?id=<?php echo $row["id"] ?>" role="button"
+                           target="_blank">View</a>
                     </td>
                 </tr>
                 <?php
